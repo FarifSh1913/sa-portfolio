@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${activeTitle} + ' — System Analyst Portfolio'">Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar d-flex flex-column p-3">
+        <a th:href="@{/}" class="brand text-decoration-none mb-4">
+            <span class="brand-dot"></span>
+            SA Portfolio
+        </a>
+        <nav class="nav nav-pills flex-column gap-1">
+            <a th:each="entry : ${sections}"
+               th:href="@{'/section/' + ${entry.key}}"
+               th:text="${entry.value}"
+               th:classappend="${entry.key == activeSlug} ? ' active' : ''"
+               class="nav-link">Раздел</a>
+        </nav>
+        <div class="mt-auto small text-secondary pt-4">Spring Boot · Bootstrap · Java 21</div>
+    </aside>
+
+    <main class="content-area">
+        <div class="content-header d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <div class="eyebrow">ИНТЕРАКТИВНЫЙ СТЕНД</div>
+                <h1 class="h2 mb-0" th:text="${activeTitle}">Раздел</h1>
+            </div>
+            <a th:href="@{/}" class="btn btn-outline-secondary">На главную</a>
+        </div>
+
+        <section th:if="${activeSlug == 'architecture'}" class="row g-4">
+            <div class="col-lg-6">
+                <div class="placeholder-card h-100">
+                    <div class="badge text-bg-dark mb-3">MONOLITH</div>
+                    <h2 class="h4">Монолит</h2>
+                    <p class="text-secondary">Первый этап сайта: один Spring Boot application, одна точка входа, единый deploy.</p>
+                    <div class="architecture-box">Browser → Spring Boot → PostgreSQL</div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="placeholder-card h-100">
+                    <div class="badge text-bg-primary mb-3">MICROSERVICES</div>
+                    <h2 class="h4">Микросервисы</h2>
+                    <p class="text-secondary">Дальше вынесем Kafka, Camunda/Process, Integration и AI в отдельные сервисы.</p>
+                    <div class="architecture-box">Gateway → Services → Kafka / DB / Camunda</div>
+                </div>
+            </div>
+        </section>
+
+        <section th:unless="${activeSlug == 'architecture'}" class="placeholder-card">
+            <div class="placeholder-icon">+</div>
+            <h2 class="h4" th:text="${activeTitle}">Раздел</h2>
+            <p class="text-secondary mb-0">Пустой модуль. Здесь будет живой пример, схема, API или интерактивный сценарий.</p>
+        </section>
+    </main>
+</div>
+</body>
+</html>
