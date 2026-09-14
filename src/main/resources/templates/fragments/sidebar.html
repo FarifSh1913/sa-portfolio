@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="sidebar" class="sidebar d-flex flex-column p-3">
+    <a th:href="@{/}" class="brand text-decoration-none mb-4">
+        <span class="brand-dot"></span>
+        SA Portfolio
+    </a>
+    <nav class="nav nav-pills flex-column gap-1">
+        <a th:each="entry : ${sections}"
+           th:href="@{'/section/' + ${entry.key}}"
+           th:text="${entry.value}"
+           th:classappend="${entry.key == activeSlug} ? ' active' : ''"
+           class="nav-link">Раздел</a>
+    </nav>
+    <div class="mt-auto small text-secondary pt-4">Spring Boot · Bootstrap · Java 21</div>
+</aside>
+</body>
+</html>
