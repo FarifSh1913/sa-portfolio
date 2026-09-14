@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${activeTitle} + ' — System Analyst Portfolio'">Архитектура</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/architecture.css}">
+</head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+
+    <main class="content-area architecture-page">
+        <header class="architecture-hero">
+            <div>
+                <div class="architecture-kicker">PORTFOLIO · LIVE LAB</div>
+                <h1>Архитектура pet-проекта</h1>
+                <p>Работающий web-слой сегодня и целевая событийная платформа для экспериментов с REST, Kafka, Camunda и AI.</p>
+            </div>
+            <div class="architecture-legend" aria-label="Статусы компонентов">
+                <span><i class="status-dot live"></i>LIVE</span>
+                <span><i class="status-dot progress"></i>IN PROGRESS</span>
+                <span><i class="status-dot planned"></i>PLANNED</span>
+            </div>
+            <a th:href="@{/}" class="btn btn-outline-secondary architecture-back">Назад</a>
+        </header>
+
+        <section class="architecture-board" aria-labelledby="systemMapTitle">
+            <div class="board-topline">
+                <div>
+                    <span class="board-label">SYSTEM MAP</span>
+                    <h2 id="systemMapTitle">От входящего запроса до аудита</h2>
+                </div>
+                <div id="flowState" class="flow-state" aria-live="polite"><span></span>REQUEST · HTTPS</div>
+            </div>
+
+            <div class="system-map" id="systemMap">
+                <svg class="connection-layer" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z"></path>
+                        </marker>
+                        <filter id="packetGlow"><feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur><feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter>
+                    </defs>
+                    <path id="edge-internet-caddy" class="connection live" d="M150 95 L150 205"></path>
+                    <path id="edge-caddy-web" class="connection live" d="M250 250 L435 250"></path>
+                    <path id="edge-web-static" class="connection live" d="M560 300 L365 430"></path>
+                    <path id="edge-web-document" class="connection planned" d="M670 300 L670 425"></path>
+                    <path id="edge-document-db" class="connection planned" d="M750 475 L1010 475"></path>
+                    <path id="edge-document-kafka" class="connection planned" d="M670 525 L670 625 L475 625"></path>
+                    <path id="edge-kafka-workflow" class="connection planned" d="M475 625 L800 625"></path>
+                    <path id="edge-workflow-camunda" class="connection planned" d="M885 575 L885 490"></path>
+                    <path id="edge-camunda-kafka" class="connection planned return" d="M825 455 C710 380 535 435 440 570"></path>
+                    <path id="edge-kafka-audit" class="connection planned" d="M390 590 L230 500"></path>
+                    <path id="edge-audit-db" class="connection planned" d="M260 465 C490 350 805 365 1010 445"></path>
+                    <path id="edge-kafka-ai" class="connection progress" d="M430 575 C450 390 850 310 1020 250"></path>
+                    <circle id="dataPacket" class="data-packet" r="7" cx="0" cy="0"></circle>
+                </svg>
+
+                <button class="service-node internet live" data-component="internet" style="--x:4%;--y:3%">
+                    <span class="node-category">ENTRY</span><strong>Internet</strong><small>lordfarif.ru</small><em>LIVE</em>
+                </button>
+                <button class="service-node caddy live" data-component="caddy" style="--x:4%;--y:25%">
+                    <span class="node-category">EDGE</span><strong>Caddy</strong><small>HTTPS · reverse proxy</small><em>LIVE</em>
+                </button>
+                <button class="service-node web live" data-component="web" style="--x:37%;--y:25%">
+                    <span class="node-category">WEB</span><strong>Portfolio Web</strong><small>Spring Boot · Thymeleaf</small><em>LIVE</em>
+                </button>
+                <button class="service-node static live" data-component="static" style="--x:21%;--y:58%">
+                    <span class="node-category">UI</span><strong>Portfolio</strong><small>Артефакты · Архитектура · Игра</small><em>LIVE</em>
+                </button>
+                <button class="service-node document planned" data-component="document" style="--x:51%;--y:58%">
+                    <span class="node-category">API</span><strong>Document Service</strong><small>REST · OpenAPI</small><em>PLANNED</em>
+                </button>
+                <button class="service-node database planned" data-component="database" style="--x:84%;--y:58%">
+                    <span class="node-category">DATABASE</span><strong>PostgreSQL</strong><small>service-owned schemas</small><em>PLANNED</em>
+                </button>
+                <button class="service-node audit planned" data-component="audit" style="--x:11%;--y:80%">
+                    <span class="node-category">CONSUMER</span><strong>Audit Service</strong><small>immutable history</small><em>PLANNED</em>
+                </button>
+                <button class="service-node kafka planned" data-component="kafka" style="--x:30%;--y:80%">
+                    <span class="node-category">BROKER</span><strong>Kafka</strong><small>domain events</small><em>PLANNED</em>
+                </button>
+                <button class="service-node workflow planned" data-component="workflow" style="--x:67%;--y:80%">
+                    <span class="node-category">WORKFLOW</span><strong>Workflow Service</strong><small>process adapter</small><em>PLANNED</em>
+                </button>
+                <button class="service-node camunda planned" data-component="camunda" style="--x:69%;--y:58%">
+                    <span class="node-category">ENGINE</span><strong>Camunda</strong><small>Document Approval</small><em>PLANNED</em>
+                </button>
+                <button class="service-node ai progress" data-component="ai" style="--x:84%;--y:25%">
+                    <span class="node-category">AI</span><strong>AI Agent</strong><small>analysis assistant</small><em>IN PROGRESS</em>
+                </button>
+            </div>
+
+            <div id="componentDetail" class="component-detail" aria-live="polite">
+                <div><span id="detailCategory">WEB · LIVE</span><h3 id="detailTitle">Portfolio Web</h3></div>
+                <p id="detailRole">Точка входа в портфолио и live-lab.</p>
+                <div id="detailItems" class="detail-items"><span>Spring Boot 3</span><span>Thymeleaf</span><span>Bootstrap</span><span>Docker</span></div>
+            </div>
+        </section>
+
+        <section class="journey-section">
+            <div class="section-heading"><span>REQUEST JOURNEY</span><h2>Как проходит один запрос</h2><p>Этапы подсвечиваются синхронно с пакетом на архитектурной схеме.</p></div>
+            <ol class="journey-timeline" id="journeyTimeline">
+                <li data-step="0"><b>01</b><div><strong>Пользователь создаёт документ</strong><span>HTTPS-запрос проходит через Caddy.</span></div></li>
+                <li data-step="1"><b>02</b><div><strong>REST API принимает запрос</strong><span>Portfolio Web передаёт команду в Document Service.</span></div></li>
+                <li data-step="2"><b>03</b><div><strong>Документ сохраняется</strong><span>Сервис фиксирует данные в PostgreSQL.</span></div></li>
+                <li data-step="3"><b>04</b><div><strong>Публикуется document.created</strong><span>Kafka принимает доменное событие.</span></div></li>
+                <li data-step="4"><b>05</b><div><strong>Workflow получает событие</strong><span>Consumer валидирует контекст процесса.</span></div></li>
+                <li data-step="5"><b>06</b><div><strong>Camunda запускает согласование</strong><span>Стартует Document Approval workflow.</span></div></li>
+                <li data-step="6"><b>07</b><div><strong>Результат возвращается в Kafka</strong><span>Статус становится новым событием.</span></div></li>
+                <li data-step="7"><b>08</b><div><strong>Audit сохраняет историю</strong><span>Полный след изменений доступен для контроля.</span></div></li>
+            </ol>
+        </section>
+
+        <section class="stack-section">
+            <div class="section-heading"><span>TECH STACK</span><h2>Технологии платформы</h2></div>
+            <div class="stack-columns">
+                <div class="stack-group live"><div class="stack-title"><i></i>LIVE</div><div class="stack-grid"><span>Java 21</span><span>Spring Boot 3</span><span>Thymeleaf</span><span>Bootstrap</span><span>Docker</span><span>Caddy · HTTPS</span></div></div>
+                <div class="stack-group roadmap"><div class="stack-title"><i></i>ROADMAP</div><div class="stack-grid"><span>PostgreSQL</span><span>Kafka</span><span>Camunda</span><span>REST · OpenAPI</span><span>JSON Events</span><span>AI · LLM</span></div></div>
+            </div>
+        </section>
+    </main>
+</div>
+<script th:src="@{/js/architecture.js}"></script>
+</body>
+</html>

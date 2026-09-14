@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title th:text="${activeTitle} + ' — System Analyst Portfolio'">Артефакты аналитика</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    >
+
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/artifacts.css}">
+</head>
+
+<body>
+
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+
+    <main class="content-area artifacts-page">
+
+    <div class="container py-5">
+
+        <!-- HEADER -->
+        <div class="artifacts-header mb-5">
+
+            <a th:href="@{/}" class="btn btn-outline-secondary mb-4">Назад</a>
+
+            <div class="section-label">
+                SYSTEM ANALYSIS
+            </div>
+
+            <h1>
+                Артефакты системного аналитика
+            </h1>
+
+            <p>
+                Не просто документация.
+                Это рабочие инструменты, которыми я превращаю
+                бизнес-задачу в понятное техническое решение
+                для команды разработки.
+            </p>
+
+        </div>
+
+
+        <!-- MAIN CARDS -->
+        <div class="row g-4">
+
+            <!-- ANALYTICAL NOTE -->
+            <div class="col-lg-4">
+
+                <div
+                        class="artifact-card note-card"
+                        data-artifact-target="#analyticsNote"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        aria-controls="analyticsNote"
+                >
+
+                    <div class="artifact-number">
+                        01
+                    </div>
+
+                    <div class="artifact-icon">
+                        ↗
+                    </div>
+
+                    <h2>
+                        Аналитическая записка
+                    </h2>
+
+                    <p>
+                        Исследование проблемы,
+                        вариантов решения,
+                        ограничений и рисков.
+                    </p>
+
+                    <div class="artifact-tags">
+                        <span>AS-IS</span>
+                        <span>TO-BE</span>
+                        <span>Риски</span>
+                    </div>
+
+                    <div class="open-link">
+                        Открыть артефакт →
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TASK -->
+            <div class="col-lg-4">
+
+                <div
+                        class="artifact-card task-card"
+                        data-artifact-target="#task"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        aria-controls="task"
+                >
+
+                    <div class="artifact-number">
+                        02
+                    </div>
+
+                    <div class="artifact-icon">
+                        ⌘
+                    </div>
+
+                    <h2>
+                        Постановка
+                    </h2>
+
+                    <p>
+                        Функциональные и нефункциональные требования,
+                        а также постановки на интеграцию.
+                    </p>
+
+                    <div class="artifact-tags">
+                        <span>ФТ</span>
+                        <span>НФТ</span>
+                        <span>Integration</span>
+                    </div>
+
+                    <div class="open-link">
+                        Открыть артефакт →
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOCKUPS -->
+            <div class="col-lg-4">
+
+                <div
+                        class="artifact-card mockup-card"
+                        data-artifact-target="#mockups"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        aria-controls="mockups"
+                >
+
+                    <div class="artifact-number">
+                        03
+                    </div>
+
+                    <div class="artifact-icon">
+                        ◇
+                    </div>
+
+                    <h2>
+                        Макеты
+                    </h2>
+
+                    <p>
+                        Самостоятельно проектирую
+                        пользовательские интерфейсы
+                        и сценарии в Figma.
+                    </p>
+
+                    <div class="artifact-tags">
+                        <span>Figma</span>
+                        <span>UX</span>
+                        <span>UI</span>
+                    </div>
+
+                    <div class="open-link">
+                        Открыть артефакт →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ANALYTICAL NOTE DETAIL -->
+        <div
+                class="collapse artifact-detail"
+                id="analyticsNote"
+        >
+
+            <div class="detail-inner">
+
+                <div class="detail-title">
+
+                    <span>
+                        01
+                    </span>
+
+                    <h2>
+                        Аналитическая записка
+                    </h2>
+
+                </div>
+
+                <p class="detail-description">
+                    Использую аналитическую записку,
+                    когда перед реализацией необходимо исследовать проблему,
+                    сравнить варианты решения,
+                    зафиксировать ограничения,
+                    риски и рекомендуемый подход.
+                </p>
+
+
+                <div class="analytics-document mt-4">
+
+                    <div class="doc-header">
+
+                        <div>
+
+                            <div class="doc-label">
+                                ANALYTICAL NOTE
+                            </div>
+
+                            <h3>
+                                Оптимизация процесса согласования документа
+                            </h3>
+
+                        </div>
+
+                        <div class="doc-status">
+                            READY
+                        </div>
+
+                    </div>
+
+
+                    <div class="doc-grid">
+
+                        <div class="doc-block problem">
+
+                            <div class="doc-block-number">
+                                01
+                            </div>
+
+                            <h4>
+                                Проблема
+                            </h4>
+
+                            <p>
+                                Согласование выполняется вручную,
+                                а актуальный статус документа
+                                приходится уточнять у участников процесса.
+                            </p>
+
+                        </div>
+
+
+                        <div class="doc-block">
+
+                            <div class="doc-block-number">
+                                02
+                            </div>
+
+                            <h4>
+                                AS-IS
+                            </h4>
+
+                            <p>
+                                Пользователь направляет документ
+                                ответственному сотруднику.
+                                Далее процесс контролируется
+                                вручную через переписку.
+                            </p>
+
+                        </div>
+
+
+                        <div class="doc-block">
+
+                            <div class="doc-block-number">
+                                03
+                            </div>
+
+                            <h4>
+                                Варианты решения
+                            </h4>
+
+                            <div class="solution-option">
+
+                                <span>
+                                    A
+                                </span>
+
+                                REST + синхронная обработка
+
+                            </div>
+
+
+                            <div class="solution-option selected">
+
+                                <span>
+                                    B
+                                </span>
+
+                                BPMN + события + Kafka
+
+                            </div>
+
+
+                            <div class="solution-option">
+
+                                <span>
+                                    C
+                                </span>
+
+                                Сохранение ручного процесса
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="doc-block result">
+
+                            <div class="doc-block-number">
+                                04
+                            </div>
+
+                            <h4>
+                                Рекомендуемое решение
+                            </h4>
+
+                            <p>
+                                Управлять жизненным циклом документа
+                                через BPMN-процесс,
+                                а события изменения статуса
+                                публиковать в Kafka.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-row">
+
+                        <div class="risk-item">
+
+                            <span class="risk-dot medium"></span>
+
+                            Интеграционная зависимость
+
+                        </div>
+
+
+                        <div class="risk-item">
+
+                            <span class="risk-dot low"></span>
+
+                            Нагрузка
+
+                        </div>
+
+
+                        <div class="risk-item">
+
+                            <span class="risk-dot medium"></span>
+
+                            Повторная доставка событий
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TASK DETAIL -->
+        <div
+                class="collapse artifact-detail"
+                id="task"
+        >
+
+            <div class="detail-inner">
+
+                <div class="detail-title">
+
+                    <span>
+                        02
+                    </span>
+
+                    <h2>
+                        Постановка
+                    </h2>
+
+                </div>
+
+                <p class="detail-description">
+                    Основной рабочий артефакт,
+                    в котором фиксирую ожидаемое поведение системы,
+                    бизнес-правила,
+                    ограничения и интеграционные взаимодействия.
+                </p>
+
+
+                <!-- TABS -->
+                <ul class="nav artifact-tabs" role="tablist">
+
+                    <li class="nav-item">
+
+                        <button
+                                class="nav-link active"
+                                data-bs-toggle="tab"
+                                data-bs-target="#functional"
+                                type="button"
+                        >
+                            Функциональные требования
+                        </button>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <button
+                                class="nav-link"
+                                data-bs-toggle="tab"
+                                data-bs-target="#nonfunctional"
+                                type="button"
+                        >
+                            Нефункциональные
+                        </button>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <button
+                                class="nav-link"
+                                data-bs-toggle="tab"
+                                data-bs-target="#integration"
+                                type="button"
+                        >
+                            Интеграция
+                        </button>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- TAB CONTENT -->
+                <div class="tab-content mt-4">
+
+
+                    <!-- FUNCTIONAL -->
+                    <div
+                            class="tab-pane fade show active"
+                            id="functional"
+                    >
+
+                        <div class="requirements-board">
+
+                            <div class="requirements-header">
+
+                                <div>
+
+                                    <div class="req-code">
+                                        FR
+                                    </div>
+
+                                    <h3>
+                                        Функциональные требования
+                                    </h3>
+
+                                </div>
+
+                                <div class="req-counter">
+                                    04 requirements
+                                </div>
+
+                            </div>
+
+
+                            <div class="requirement-row">
+
+                                <div class="req-id">
+                                    FR-01
+                                </div>
+
+                                <div class="req-body">
+
+                                    <strong>
+                                        Создание документа
+                                    </strong>
+
+                                    <p>
+                                        Пользователь должен иметь возможность
+                                        создать документ
+                                        и сохранить его как черновик.
+                                    </p>
+
+                                </div>
+
+                                <div class="req-status">
+                                    READY
+                                </div>
+
+                            </div>
+
+
+                            <div class="requirement-row">
+
+                                <div class="req-id">
+                                    FR-02
+                                </div>
+
+                                <div class="req-body">
+
+                                    <strong>
+                                        Отправка на согласование
+                                    </strong>
+
+                                    <p>
+                                        Пользователь должен иметь возможность
+                                        направить документ
+                                        в бизнес-процесс согласования.
+                                    </p>
+
+                                </div>
+
+                                <div class="req-status">
+                                    READY
+                                </div>
+
+                            </div>
+
+
+                            <div class="requirement-row">
+
+                                <div class="req-id">
+                                    FR-03
+                                </div>
+
+                                <div class="req-body">
+
+                                    <strong>
+                                        Отображение статуса
+                                    </strong>
+
+                                    <p>
+                                        Пользователь должен видеть
+                                        актуальный статус документа
+                                        в интерфейсе системы.
+                                    </p>
+
+                                </div>
+
+                                <div class="req-status">
+                                    READY
+                                </div>
+
+                            </div>
+
+
+                            <div class="requirement-row">
+
+                                <div class="req-id">
+                                    FR-04
+                                </div>
+
+                                <div class="req-body">
+
+                                    <strong>
+                                        История изменений
+                                    </strong>
+
+                                    <p>
+                                        Система должна хранить
+                                        историю изменения статусов
+                                        и действий пользователей.
+                                    </p>
+
+                                </div>
+
+                                <div class="req-status">
+                                    READY
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- NON FUNCTIONAL -->
+                    <div
+                            class="tab-pane fade"
+                            id="nonfunctional"
+                    >
+
+                        <div class="nfr-grid">
+
+                            <div class="nfr-card">
+
+                                <div class="nfr-value">
+                                    &lt; 2 sec
+                                </div>
+
+                                <div class="nfr-label">
+                                    API response
+                                </div>
+
+                            </div>
+
+
+                            <div class="nfr-card">
+
+                                <div class="nfr-value">
+                                    99.9%
+                                </div>
+
+                                <div class="nfr-label">
+                                    Availability
+                                </div>
+
+                            </div>
+
+
+                            <div class="nfr-card">
+
+                                <div class="nfr-value">
+                                    JWT
+                                </div>
+
+                                <div class="nfr-label">
+                                    Security
+                                </div>
+
+                            </div>
+
+
+                            <div class="nfr-card">
+
+                                <div class="nfr-value">
+                                    Audit
+                                </div>
+
+                                <div class="nfr-label">
+                                    Logging
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="requirement-example mt-4">
+
+                            <span>
+                                NFR-01
+                            </span>
+
+                            Время ответа REST API
+                            при штатной нагрузке
+                            не должно превышать 2 секунд
+                            для 95% запросов.
+
+                        </div>
+
+
+                        <div class="requirement-example">
+
+                            <span>
+                                NFR-02
+                            </span>
+
+                            Все изменения статуса документа
+                            должны фиксироваться
+                            в журнале аудита.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- INTEGRATION -->
+                    <div
+                            class="tab-pane fade"
+                            id="integration"
+                    >
+
+                        <div class="integration-dashboard">
+
+                            <div class="integration-title">
+
+                                <div>
+
+                                    <span>
+                                        INTEGRATION FLOW
+                                    </span>
+
+                                    <h3>
+                                        Передача документа на обработку
+                                    </h3>
+
+                                </div>
+
+                                <div class="integration-protocol">
+                                    REST + Kafka
+                                </div>
+
+                            </div>
+
+
+                            <div class="integration-schema">
+
+                                <div class="system-node source">
+
+                                    <div class="node-type">
+                                        SOURCE
+                                    </div>
+
+                                    <strong>
+                                        Document Service
+                                    </strong>
+
+                                    <span>
+                                        Spring Boot
+                                    </span>
+
+                                </div>
+
+
+                                <div class="integration-channel">
+
+                                    <div class="channel-label">
+                                        POST /api/v1/documents
+                                    </div>
+
+                                    <div class="animated-line">
+                                        <div class="data-dot"></div>
+                                    </div>
+
+                                    <div class="channel-label kafka">
+                                        document.status.changed
+                                    </div>
+
+                                </div>
+
+
+                                <div class="system-node target">
+
+                                    <div class="node-type">
+                                        TARGET
+                                    </div>
+
+                                    <strong>
+                                        Approval Service
+                                    </strong>
+
+                                    <span>
+                                        Camunda
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="integration-meta">
+
+                                <div class="meta-block">
+
+                                    <span>
+                                        Request
+                                    </span>
+
+                                    <code>
+                                        application/json
+                                    </code>
+
+                                </div>
+
+
+                                <div class="meta-block">
+
+                                    <span>
+                                        Correlation
+                                    </span>
+
+                                    <code>
+                                        X-Correlation-Id
+                                    </code>
+
+                                </div>
+
+
+                                <div class="meta-block">
+
+                                    <span>
+                                        Retry
+                                    </span>
+
+                                    <code>
+                                        3 attempts
+                                    </code>
+
+                                </div>
+
+
+                                <div class="meta-block">
+
+                                    <span>
+                                        Timeout
+                                    </span>
+
+                                    <code>
+                                        5 sec
+                                    </code>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="integration-json mt-4">
+
+                                <div class="json-header">
+                                    Request example
+                                </div>
+
+                                <pre>{
+  "documentId": "DOC-1024",
+  "status": "ON_APPROVAL",
+  "authorId": "USR-221",
+  "correlationId": "9f75c7e4-1b22-4c68"
+}</pre>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOCKUPS DETAIL -->
+        <div
+                class="collapse artifact-detail"
+                id="mockups"
+        >
+
+            <div class="detail-inner">
+
+                <div class="detail-title">
+
+                    <span>
+                        03
+                    </span>
+
+                    <h2>
+                        Макеты
+                    </h2>
+
+                </div>
+
+                <p class="detail-description">
+                    При необходимости самостоятельно проектирую макеты
+                    экранов в Figma.
+                    Макеты помогают синхронизировать ожидания
+                    бизнеса,
+                    аналитики,
+                    frontend-разработки
+                    и QA.
+                </p>
+
+
+                <div class="figma-embed-section">
+                    <div class="figma-embed-header">
+                        <div>
+                            <div class="figma-embed-label">LIVE FIGMA</div>
+                            <h3>Интерактивный макет</h3>
+                            <p>Перемещайтесь по холсту и используйте встроенные инструменты масштабирования.</p>
+                        </div>
+                        <a class="figma-open-button"
+                           href="https://www.figma.com/design/i0DQ0INIPcaBfTW6TPXX1J/Untitled?node-id=0-1&amp;t=XaNP18DFq0VeO2E1-1"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Открыть в Figma ↗
+                        </a>
+                    </div>
+
+                    <div class="figma-embed-frame">
+                        <iframe
+                                title="Интерактивный макет в Figma"
+                                src="https://embed.figma.com/design/i0DQ0INIPcaBfTW6TPXX1J/Untitled?embed-host=sa-portfolio&amp;node-id=0-1&amp;viewport-controls=true&amp;page-selector=true&amp;theme=light"
+                                loading="lazy"
+                                allowfullscreen>
+                            Для просмотра макета откройте его по ссылке в Figma.
+                        </iframe>
+                    </div>
+                    <p class="figma-embed-fallback">
+                        Если preview недоступен из-за настроек доступа Figma,
+                        используйте кнопку «Открыть в Figma».
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </main>
+
+</div>
+
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+<script th:src="@{/js/artifacts.js}"></script>
+
+</body>
+</html>
