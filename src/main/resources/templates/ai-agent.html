@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <title>Camunda + AI агент — System Analyst Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/ai-agent.css}">
+    <script type="importmap">
+        {"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}
+    </script>
+</head>
+<body class="ai-agent-body">
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+
+    <main class="content-area ai-page">
+        <div class="content-header ai-page-header d-flex justify-content-between align-items-center gap-3">
+            <div>
+                <div class="eyebrow">ИНТЕРАКТИВНЫЙ СЦЕНАРИЙ</div>
+                <h1 class="h2 mb-0">Camunda + AI агент</h1>
+            </div>
+            <div class="ai-header-actions">
+                <button class="btn btn-outline-secondary" id="aiRefresh" type="button">Обновить</button>
+                <a th:href="@{/}" class="btn btn-outline-secondary">Назад</a>
+            </div>
+        </div>
+
+        <section class="ai-shell" aria-labelledby="scenarioTitle">
+            <header class="ai-heading">
+                <span class="ai-kicker">СЦЕНАРИЙ · 01</span>
+                <h2 id="scenarioTitle">На дороге</h2>
+                <p>Запустите сцену и посмотрите, что произойдет дальше.</p>
+            </header>
+
+            <div class="ai-scene" id="aiScene" data-state="initial" aria-label="Автомобиль на дороге перед препятствием">
+                <div class="ai-horizon" aria-hidden="true"></div>
+                <div class="ai-verge" aria-hidden="true"></div>
+                <div class="ai-road" aria-hidden="true"><span class="ai-lane-markings"></span></div>
+                <div class="ai-wall" id="aiWall" aria-hidden="true">
+                    <span class="ai-wall-cap"></span>
+                    <span class="ai-wall-sections"></span>
+                    <span class="ai-wall-base"></span>
+                </div>
+
+                <div class="ai-car" id="aiCar" aria-hidden="true">
+                    <img class="ai-car-body ai-car-intact" th:src="@{/img/Машина целая.png}" src="/img/Машина целая.png" alt="" draggable="false">
+                    <img class="ai-car-body ai-car-damaged" th:src="@{/img/Машина разбитая.png}" src="/img/Машина разбитая.png" alt="" draggable="false">
+                    <img class="ai-wheel ai-wheel-rear" th:src="@{/img/Колесо.png}" src="/img/Колесо.png" alt="" draggable="false">
+                    <img class="ai-wheel ai-wheel-front" th:src="@{/img/Колесо.png}" src="/img/Колесо.png" alt="" draggable="false">
+                    <span class="ai-exhaust" id="aiExhaust"></span>
+                    <span class="ai-hood-smoke">
+                        <i></i><i></i><i></i>
+                    </span>
+                </div>
+                <span class="ai-impact" aria-hidden="true"></span>
+                <span class="ai-dust" aria-hidden="true"></span>
+            </div>
+
+            <div class="ai-scene-actions" id="aiSceneActions">
+                <button class="btn btn-dark ai-start" id="aiStart" type="button">Запустить</button>
+            </div>
+
+            <section class="ai-assistant" id="aiAssistant" aria-labelledby="lanaTitle" hidden>
+                <div class="ai-lana-character" id="aiLanaStage" aria-label="3D-модель Ланы">
+                    <span class="ai-lana-status" id="aiLanaStatus" role="status">Лана подключается...</span>
+                    <span class="ai-lana-fade" aria-hidden="true"></span>
+                </div>
+
+                <div class="ai-chat">
+                    <header class="ai-chat-header">
+                        <div>
+                            <span class="ai-assistant-kicker">ПЕРСОНАЛЬНЫЙ ПОМОЩНИК</span>
+                            <h3 id="lanaTitle">Лана</h3>
+                            <p>Помогаю разбираться, анализировать и находить решения</p>
+                        </div>
+                        <span class="ai-online"><i></i>Онлайн</span>
+                    </header>
+
+                    <div class="ai-message-history" id="aiMessageHistory" aria-live="polite" aria-label="История диалога"></div>
+
+                    <form class="ai-chat-input" id="aiChatForm">
+                        <textarea id="aiChatText" rows="1" maxlength="1000" placeholder="Напишите сообщение Лане..." aria-label="Сообщение Лане"></textarea>
+                        <button type="submit" aria-label="Отправить сообщение">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.3 20.1 3c.7-.3 1.4.4 1.1 1.1l-8.3 17.1c-.3.7-1.3.6-1.5-.1l-1.5-6-6-1.5c-.7-.2-.8-1.2-.1-1.5l9.3-4.7-7.7 5.3 5.3 1.3 1.3 5.3L17.3 6l-4.7 9.3"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
+            <div class="ai-toast" id="aiToast" role="status" aria-live="polite" hidden>Следующий шаг будет подключен позже</div>
+        </section>
+    </main>
+</div>
+<script th:src="@{/js/ai-agent.js}" src="/js/ai-agent.js" defer></script>
+</body>
+</html>

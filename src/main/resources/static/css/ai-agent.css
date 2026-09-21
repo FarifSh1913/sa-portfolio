@@ -1,0 +1,89 @@
+.ai-agent-body{margin:0}
+.ai-page{display:flex;flex-direction:column;min-height:100vh;padding:0;background:radial-gradient(circle at 80% 5%,rgba(99,102,241,.08),transparent 32%),#f4f6f8}
+.ai-page-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:28px 40px;margin:0}
+.ai-header-actions{display:flex;flex-wrap:wrap;gap:10px}
+.ai-shell{display:flex;flex:1;flex-direction:column;width:100%;margin:0;background:#fff;overflow:hidden}
+.ai-heading{padding:28px 32px 24px}
+.ai-kicker,.ai-assistant-kicker{color:#6366f1;font-size:.72rem;font-weight:800;letter-spacing:.15em}
+.ai-heading h2{margin:6px 0;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;letter-spacing:-.035em}
+.ai-heading p{margin:0;color:#6b7280}
+.ai-scene{position:relative;flex:1;min-height:max(380px,calc(100vh - 390px));overflow:hidden;isolation:isolate;background:linear-gradient(#b8d2df 0%,#e1edf0 47%,#c3d0c2 48%,#a8b69f 59%,#70877b 60%);border-block:1px solid #dce2e5}
+.ai-horizon{position:absolute;inset:29% 0 41%;background:linear-gradient(transparent,rgba(255,255,255,.26) 60%,rgba(70,94,81,.12));clip-path:polygon(0 75%,13% 58%,28% 72%,42% 48%,57% 70%,73% 42%,88% 64%,100% 52%,100% 100%,0 100%)}
+.ai-verge{position:absolute;inset:55% 0 38%;background:linear-gradient(#9cae93,#758c72);border-bottom:3px solid #d5d5c7}
+.ai-road{position:absolute;inset:62% 0 0;background:linear-gradient(#59616a,#454d55 24%,#3c444d 75%,#303840);box-shadow:inset 0 5px 0 rgba(255,255,255,.12)}
+.ai-road:before{content:"";position:absolute;top:12%;left:0;right:0;height:3px;background:rgba(239,232,199,.55)}
+.ai-road:after{content:"";position:absolute;bottom:11%;left:0;right:0;height:3px;background:rgba(239,232,199,.48)}
+.ai-lane-markings{position:absolute;top:58%;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,#e9e1c2 0 54px,transparent 54px 92px);opacity:.8}
+.ai-wall{position:absolute;left:88%;bottom:23%;width:8%;height:39%;z-index:3;filter:drop-shadow(-8px 9px 5px rgba(19,30,38,.22))}
+.ai-wall-sections{position:absolute;inset:6% 0 5%;border:2px solid #737c82;border-radius:3px;background:repeating-linear-gradient(0deg,transparent 0 25%,rgba(49,60,68,.27) calc(25% + 1px) calc(25% + 3px),transparent calc(25% + 4px) 50%),repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 46%,rgba(67,76,82,.3) 47% 49%,rgba(255,255,255,.08) 50% 100%),linear-gradient(105deg,#abb5b8,#7f8b90)}
+.ai-wall-cap,.ai-wall-base{position:absolute;left:-6%;width:112%;height:8%;background:linear-gradient(#c2c9c8,#7b8589);border:1px solid #6f7a7e;border-radius:3px;z-index:1}
+.ai-wall-cap{top:0}.ai-wall-base{bottom:0;height:10%}
+.ai-car{position:absolute;left:4%;bottom:23%;width:min(42%,600px);aspect-ratio:3/1;z-index:4;transform:translate3d(0,0,0);will-change:transform}
+.ai-car.is-driving{transition:transform var(--drive-duration,3.2s) linear}
+.ai-car-body{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+.ai-car-damaged{opacity:0;transition:opacity .13s ease}
+.ai-scene[data-state="crashed"] .ai-car-damaged,.ai-scene[data-state="assistant"] .ai-car-damaged{opacity:1}
+.ai-scene[data-state="crashed"] .ai-car-intact,.ai-scene[data-state="assistant"] .ai-car-intact{opacity:0}
+.ai-wheel{position:absolute;bottom:-5%;width:16%;height:auto;aspect-ratio:1;z-index:2;pointer-events:none;user-select:none;transform-origin:center}
+.ai-wheel-rear{left:12%}.ai-wheel-front{left:64.2%}
+.ai-scene[data-state="running"] .ai-wheel{animation:aiWheelSpin .57s linear infinite}
+.ai-exhaust{position:absolute;left:0;bottom:11%;width:1px;height:1px;z-index:-1}
+.ai-smoke-puff{position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:rgba(222,230,232,.65);box-shadow:8px -5px 0 2px rgba(220,227,228,.33);animation:aiExhaustPuff .95s ease-out forwards}
+.ai-hood-smoke{position:absolute;left:76%;bottom:44%;width:20%;height:55%;z-index:5;opacity:0;pointer-events:none}
+.ai-hood-smoke i{position:absolute;bottom:0;left:20%;width:22px;height:22px;border-radius:50%;background:rgba(190,199,202,.48);filter:blur(5px);animation:aiHoodSmoke 2.6s ease-out infinite}
+.ai-hood-smoke i:nth-child(2){left:44%;animation-delay:.8s;width:28px;height:28px}
+.ai-hood-smoke i:nth-child(3){left:5%;animation-delay:1.6s;width:18px;height:18px}
+.ai-scene[data-state="crashed"] .ai-hood-smoke,.ai-scene[data-state="assistant"] .ai-hood-smoke{opacity:1}
+.ai-impact{position:absolute;left:88%;bottom:40%;width:20px;height:20px;border:3px solid rgba(255,242,197,.9);border-radius:50%;opacity:0;z-index:6;pointer-events:none}
+.ai-dust{position:absolute;left:85%;bottom:22%;width:60px;height:28px;border-radius:50%;background:radial-gradient(ellipse,rgba(215,212,195,.7),transparent 70%);opacity:0;z-index:6;pointer-events:none}
+.ai-scene[data-state="crash"] .ai-impact{animation:aiImpact .38s ease-out both}
+.ai-scene[data-state="crash"] .ai-dust{animation:aiDust .6s ease-out both}
+.ai-scene[data-state="crash"] .ai-car{animation:aiCarShake .32s ease-in-out both}
+.ai-scene-actions{display:flex;justify-content:center;padding:22px 20px 28px;min-height:96px}
+.ai-scene-actions[hidden]{display:none}
+.ai-start,.ai-next{border-radius:999px;padding:11px 27px;font-weight:700;box-shadow:0 10px 20px rgba(17,24,39,.14)}
+.ai-assistant{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(440px,1.2fr);gap:12px;width:min(1120px,calc(100% - 64px));height:620px;margin:0 auto 32px;overflow:hidden;background:linear-gradient(120deg,#edf5fb 0,#f8fafc 43%,#fff 100%);border:1px solid #dde6ef;border-radius:24px;box-shadow:0 18px 45px rgba(17,24,39,.08)}
+.ai-assistant[hidden],.ai-toast[hidden]{display:none}
+.ai-assistant.is-visible{animation:aiAssistantIn .4s ease-out both}
+.ai-lana-character{position:relative;min-width:0;overflow:hidden;background:radial-gradient(circle at 50% 31%,rgba(255,255,255,.95),transparent 42%)}
+.ai-lana-character:after{content:"";position:absolute;inset:0 0 auto auto;width:1px;height:100%;background:linear-gradient(transparent,rgba(145,164,185,.28),transparent)}
+.ai-lana-character canvas{position:absolute;inset:-1% -24% 0;width:148%!important;height:105%!important}
+.ai-lana-status{position:absolute;inset:0;z-index:2;display:grid;place-items:center;padding:20px;text-align:center;color:#475569;font-size:.92rem;font-weight:700}
+.ai-lana-status[hidden]{display:none}
+.ai-lana-fade{position:absolute;inset:auto 0 0;z-index:1;height:23%;background:linear-gradient(transparent,#eef5fa 86%);pointer-events:none}
+.ai-chat{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;padding:28px 28px 22px}
+.ai-chat-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:0 2px 18px;border-bottom:1px solid #e5eaf0}
+.ai-chat-header h3{margin:2px 0 4px;font-size:1.65rem;font-weight:850;letter-spacing:-.03em}
+.ai-chat-header p{max-width:360px;margin:0;color:#64748b;font-size:.9rem;line-height:1.45}
+.ai-online{flex:none;display:inline-flex;align-items:center;gap:7px;margin-top:2px;padding:7px 12px;color:#15803d;background:#f0fdf4;border:1px solid #bbebc9;border-radius:999px;font-size:.8rem;font-weight:750}
+.ai-online i{width:8px;height:8px;background:#16a34a;border-radius:50%;box-shadow:0 0 0 4px rgba(22,163,74,.1)}
+.ai-message-history{min-height:0;display:flex;flex-direction:column;gap:13px;overflow-y:auto;overscroll-behavior:contain;padding:20px 7px 20px 2px;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
+.ai-message-row{display:flex;align-items:flex-end;gap:9px;width:100%;animation:aiMessageIn .3s ease both}
+.ai-message-row.is-nikolay{justify-content:flex-end}
+.ai-message-avatar{flex:none;width:34px;height:34px;overflow:hidden;border:2px solid #fff;border-radius:50%;background:#e5e7eb;box-shadow:0 3px 10px rgba(15,23,42,.12)}
+.ai-message-avatar img{display:block;width:100%;height:100%;object-fit:cover}
+.ai-message-avatar.is-nikolay{background-image:url('/img/Машина целая.png');background-repeat:no-repeat;background-size:500px auto;background-position:-220px -25px}
+.ai-message-bubble{max-width:min(82%,430px);padding:11px 14px;color:#273244;background:#fff;border:1px solid #e1e7ee;border-radius:16px 16px 16px 5px;box-shadow:0 5px 15px rgba(17,24,39,.045);white-space:pre-line;line-height:1.45}
+.is-nikolay .ai-message-bubble{order:-1;background:#eef2ff;border-color:#dce3ff;border-radius:16px 16px 5px 16px}
+.ai-message-time{display:block;margin-top:4px;color:#94a3b8;font-size:.68rem;line-height:1;text-align:right}
+.ai-message-video{width:min(100%,390px);padding:8px}
+.ai-message-video video{display:block;width:100%;height:auto;max-height:220px;border-radius:11px;background:#111827}
+.ai-chat-input{display:flex;align-items:flex-end;gap:10px;padding-top:15px;border-top:1px solid #e5eaf0}
+.ai-chat-input textarea{width:100%;max-height:96px;resize:none;padding:12px 15px;color:#1f2937;background:#fff;border:1px solid #d7dee7;border-radius:14px;outline:none;line-height:1.45}
+.ai-chat-input textarea:focus{border-color:#818cf8;box-shadow:0 0 0 4px rgba(99,102,241,.09)}
+.ai-chat-input button{flex:none;width:44px;height:44px;display:grid;place-items:center;padding:0;color:#fff;background:#6366f1;border:0;border-radius:50%;box-shadow:0 8px 18px rgba(99,102,241,.24)}
+.ai-chat-input button:hover{background:#4f46e5}.ai-chat-input button:disabled{opacity:.48}
+.ai-chat-input svg{width:21px;height:21px;fill:currentColor}
+.ai-toast{position:fixed;right:24px;bottom:24px;z-index:20;max-width:min(360px,calc(100vw - 32px));padding:14px 20px;color:#fff;background:#111827;border-radius:14px;box-shadow:0 16px 40px rgba(17,24,39,.25)}
+@keyframes aiWheelSpin{to{transform:rotate(360deg)}}
+@keyframes aiExhaustPuff{to{opacity:0;transform:translate(-35px,-18px) scale(1.8)}}
+@keyframes aiHoodSmoke{0%{opacity:0;transform:translate(0,0) scale(.7)}25%{opacity:.8}100%{opacity:0;transform:translate(10px,-65px) scale(2.2)}}
+@keyframes aiImpact{10%{opacity:1;transform:scale(.4)}100%{opacity:0;transform:scale(4)}}
+@keyframes aiDust{15%{opacity:1}100%{opacity:0;transform:translate(-26px,-18px) scale(2.1)}}
+@keyframes aiCarShake{25%{translate:-6px 0}55%{translate:4px 0}80%{translate:-2px 0}}
+@keyframes aiAssistantIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes aiMessageIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:980px){.ai-assistant{grid-template-columns:minmax(210px,.65fr) minmax(390px,1.35fr)}.ai-chat{padding-inline:20px}.ai-lana-character canvas{inset:1% -36%;width:172%!important}}
+@media(max-width:720px){.ai-page-header{padding:24px}.ai-heading{padding:24px 20px 18px}.ai-scene{min-height:320px}.ai-car{width:49%;left:3%}.ai-wall{left:87%;width:10%;height:34%}.ai-assistant{grid-template-columns:1fr;grid-template-rows:230px 560px;width:calc(100% - 32px);height:790px;margin:0 16px 20px}.ai-lana-character:after{display:none}.ai-lana-character canvas{inset:-8% -12%;width:124%!important;height:126%!important}.ai-lana-fade{height:26%}.ai-chat{padding:20px 16px 16px}.ai-chat-header h3{font-size:1.4rem}.ai-online{padding:6px 9px}.ai-toast{right:16px;bottom:16px}}
+@media(max-width:430px){.ai-page-header{padding:20px 18px}.ai-scene{min-height:280px}.ai-wall{height:30%}.ai-assistant{grid-template-rows:210px 540px;height:750px}.ai-chat-header p{font-size:.82rem}.ai-message-bubble{max-width:84%;font-size:.9rem}.ai-message-avatar{width:31px;height:31px}.ai-scene-actions{padding:18px 16px 24px}}
+@media(prefers-reduced-motion:reduce){.ai-car.is-driving,.ai-car-damaged,.ai-wheel,.ai-smoke-puff,.ai-hood-smoke i,.ai-impact,.ai-dust,.ai-assistant.is-visible{animation-duration:.01ms!important;transition-duration:.01ms!important}.ai-scene[data-state="running"] .ai-wheel{animation:none}}
