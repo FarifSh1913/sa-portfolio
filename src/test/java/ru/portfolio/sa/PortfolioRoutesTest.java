@@ -73,6 +73,40 @@ class PortfolioRoutesTest {
     }
 
     @Test
+    void aiAgentPageContainsSceneAndServesItsAssets() throws Exception {
+        mockMvc.perform(get("/section/ai-agent"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("class=\"sidebar")))
+                .andExpect(content().string(containsString(">Назад</a>")))
+                .andExpect(content().string(containsString("id=\"aiScene\"")))
+                .andExpect(content().string(containsString("id=\"aiStart\"")))
+                .andExpect(content().string(containsString("id=\"aiRefresh\"")))
+                .andExpect(content().string(containsString("Машина целая.png")))
+                .andExpect(content().string(containsString("Машина разбитая.png")))
+                .andExpect(content().string(containsString("Колесо.png")))
+                .andExpect(content().string(containsString("Лана подключается...")))
+                .andExpect(content().string(containsString("id=\"aiMessageHistory\"")))
+                .andExpect(content().string(containsString("placeholder=\"Напишите сообщение Лане...\"")))
+                .andExpect(content().string(containsString("/vendor/three/build/three.module.js")))
+                .andExpect(content().string(containsString("/js/ai-agent.js")));
+
+        mockMvc.perform(get("/js/ai-agent.js"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("const STORY_MESSAGES")))
+                .andExpect(content().string(containsString("sender: 'nikolay'")))
+                .andExpect(content().string(containsString("messageHistory.scrollTo")));
+        mockMvc.perform(get("/css/ai-agent.css")).andExpect(status().isOk());
+        mockMvc.perform(get("/img/Машина целая.png")).andExpect(status().isOk());
+        mockMvc.perform(get("/img/Машина разбитая.png")).andExpect(status().isOk());
+        mockMvc.perform(get("/img/Колесо.png")).andExpect(status().isOk());
+        mockMvc.perform(get("/video/ТамараИНиколай.mp4")).andExpect(status().isOk());
+        mockMvc.perform(get("/models/lana.glb")).andExpect(status().isOk());
+        mockMvc.perform(get("/js/ai-agent-lana.js")).andExpect(status().isOk());
+        mockMvc.perform(get("/vendor/three/build/three.module.js")).andExpect(status().isOk());
+        mockMvc.perform(get("/vendor/three/examples/jsm/loaders/GLTFLoader.js")).andExpect(status().isOk());
+    }
+
+    @Test
     void clientScriptsContainExpectedInteractions() throws Exception {
         mockMvc.perform(get("/js/artifacts.js"))
                 .andExpect(status().isOk())

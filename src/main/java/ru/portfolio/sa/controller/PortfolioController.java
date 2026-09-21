@@ -49,6 +49,12 @@ public class PortfolioController {
         return "antistress";
     }
 
+    @GetMapping("/section/ai-agent")
+    public String aiAgent(Model model) {
+        addSectionModel(model, "ai-agent");
+        return "ai-agent";
+    }
+
 
     @GetMapping("/section/{slug}")
     public String section(@PathVariable String slug, Model model) {
