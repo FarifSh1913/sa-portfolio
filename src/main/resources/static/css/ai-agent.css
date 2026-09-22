@@ -53,7 +53,6 @@
 .ai-lana-fade{position:absolute;inset:auto 0 0;z-index:1;height:23%;background:linear-gradient(transparent,#eef5fa 86%);pointer-events:none}
 .ai-chat{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;padding:28px 28px 22px}
 .ai-chat-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:0 2px 18px;border-bottom:1px solid #e5eaf0}
-.ai-chat-header-actions{display:flex;align-items:center;gap:9px;flex:none}.ai-skip-intro{padding:7px 12px;color:#4f46e5;background:#eef2ff;border:1px solid #c7d2fe;border-radius:999px;font-size:.78rem;font-weight:750}.ai-skip-intro:hover{background:#e0e7ff;color:#4338ca}.ai-skip-intro[hidden]{display:none}
 .ai-chat-header h3{margin:2px 0 4px;font-size:1.65rem;font-weight:850;letter-spacing:-.03em}
 .ai-chat-header p{max-width:360px;margin:0;color:#64748b;font-size:.9rem;line-height:1.45}
 .ai-online{flex:none;display:inline-flex;align-items:center;gap:7px;margin-top:2px;padding:7px 12px;color:#15803d;background:#f0fdf4;border:1px solid #bbebc9;border-radius:999px;font-size:.8rem;font-weight:750}
@@ -75,14 +74,6 @@
 .ai-chat-input button{flex:none;width:44px;height:44px;display:grid;place-items:center;padding:0;color:#fff;background:#6366f1;border:0;border-radius:50%;box-shadow:0 8px 18px rgba(99,102,241,.24)}
 .ai-chat-input button:hover{background:#4f46e5}.ai-chat-input button:disabled{opacity:.48}
 .ai-chat-input svg{width:21px;height:21px;fill:currentColor}
-.ai-chat-input textarea:disabled{cursor:not-allowed;background:#f1f5f9;color:#94a3b8;opacity:.82}
-.ai-assistant.ai-state-screen{display:block;height:auto;min-height:520px;padding:0}
-.ai-assistant.ai-state-screen .ai-state-content{min-height:480px;display:grid;place-items:center;overflow:auto;padding:36px}
-.ai-status-card{width:min(640px,100%);padding:42px 34px;text-align:center;background:#fff;border:1px solid #e1e7ee;border-radius:22px;box-shadow:0 14px 35px rgba(17,24,39,.07)}
-.ai-status-card h3{margin:12px 0 10px;font-size:1.5rem;font-weight:800}.ai-status-card p{margin:0 0 24px;color:#64748b;line-height:1.65;white-space:pre-line}
-.ai-loader{display:inline-block;width:28px;height:28px;border:3px solid #dbeafe;border-top-color:#6366f1;border-radius:50%;animation:aiLoader .8s linear infinite}
-.ai-approval-form{width:min(650px,100%);display:grid;gap:14px;padding:30px;background:#fff;border:1px solid #e1e7ee;border-radius:22px;box-shadow:0 14px 35px rgba(17,24,39,.07)}
-.ai-form-heading h3{margin:6px 0 10px;font-size:1.45rem;font-weight:800}.ai-approval-form label{display:grid;gap:6px;color:#475569;font-size:.8rem;font-weight:700}.ai-approval-form input,.ai-approval-form textarea{width:100%;padding:11px 13px;color:#1f2937;background:#f8fafc;border:1px solid #d7dee7;border-radius:12px;font:inherit;font-weight:400;line-height:1.45}.ai-approval-form textarea{resize:vertical}.ai-approval-form input[readonly]{color:#64748b}.ai-optional{font-weight:400;color:#94a3b8}.ai-approval-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:5px}.ai-approval-actions button{border-radius:999px;padding:10px 22px;font-weight:700}.ai-inline-error{margin:0;color:#b91c1c;font-size:.85rem}.ai-image-bubble{width:min(100%,430px);padding:8px}.ai-image-bubble img{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:11px;background:#f1f5f9}.ai-download-image{display:inline-flex;margin:10px 4px 2px;padding:8px 12px;color:#4f46e5;background:#eef2ff;border-radius:10px;font-size:.8rem;font-weight:750;text-decoration:none}.ai-download-image:hover{background:#e0e7ff;color:#4338ca}
 .ai-toast{position:fixed;right:24px;bottom:24px;z-index:20;max-width:min(360px,calc(100vw - 32px));padding:14px 20px;color:#fff;background:#111827;border-radius:14px;box-shadow:0 16px 40px rgba(17,24,39,.25)}
 @keyframes aiWheelSpin{to{transform:rotate(360deg)}}
 @keyframes aiExhaustPuff{to{opacity:0;transform:translate(-35px,-18px) scale(1.8)}}
@@ -92,9 +83,7 @@
 @keyframes aiCarShake{25%{translate:-6px 0}55%{translate:4px 0}80%{translate:-2px 0}}
 @keyframes aiAssistantIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes aiMessageIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
-@keyframes aiLoader{to{transform:rotate(360deg)}}
 @media(max-width:980px){.ai-assistant{grid-template-columns:minmax(210px,.65fr) minmax(390px,1.35fr)}.ai-chat{padding-inline:20px}.ai-lana-character canvas{inset:1% -36%;width:172%!important}}
 @media(max-width:720px){.ai-page-header{padding:24px}.ai-heading{padding:24px 20px 18px}.ai-scene{min-height:320px}.ai-car{width:49%;left:3%}.ai-wall{left:87%;width:10%;height:34%}.ai-assistant{grid-template-columns:1fr;grid-template-rows:230px 580px;width:calc(100% - 32px);height:810px;margin:0 16px 28px}.ai-lana-character:after{display:none}.ai-lana-character canvas{inset:-8% -12%;width:124%!important;height:126%!important}.ai-lana-fade{height:26%}.ai-chat{padding:20px 16px calc(26px + env(safe-area-inset-bottom))}.ai-chat-input{padding-top:17px}.ai-chat-input textarea{min-height:46px;padding:12px 14px;font-size:16px}.ai-chat-input button{width:46px;height:46px}.ai-chat-header h3{font-size:1.4rem}.ai-online{padding:6px 9px}.ai-toast{right:16px;bottom:16px}}
-@media(max-width:720px){.ai-assistant.ai-state-screen{height:auto;min-height:620px}.ai-assistant.ai-state-screen .ai-state-content{min-height:580px;padding:20px 16px}.ai-approval-form{padding:22px 18px}.ai-approval-actions{justify-content:stretch}.ai-approval-actions button{flex:1}}
 @media(max-width:430px){.ai-page-header{padding:20px 18px}.ai-scene{min-height:280px}.ai-wall{height:30%}.ai-assistant{grid-template-rows:210px 560px;height:770px}.ai-chat-header p{font-size:.82rem}.ai-message-bubble{max-width:84%;font-size:.9rem}.ai-message-avatar{width:31px;height:31px}.ai-scene-actions{padding:18px 16px 24px}}
 @media(prefers-reduced-motion:reduce){.ai-car.is-driving,.ai-car-damaged,.ai-wheel,.ai-smoke-puff,.ai-hood-smoke i,.ai-impact,.ai-dust,.ai-assistant.is-visible{animation-duration:.01ms!important;transition-duration:.01ms!important}.ai-scene[data-state="running"] .ai-wheel{animation:none}}
