@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/app.css}">
     <link rel="stylesheet" th:href="@{/css/ai-agent.css}">
+    <meta name="ai-agent-api-url" th:content="${aiAgentApiUrl}">
     <script type="importmap">
         {"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}
     </script>
@@ -76,13 +77,18 @@
                             <h3 id="lanaTitle">Лана</h3>
                             <p>Помогаю разбираться, анализировать и находить решения</p>
                         </div>
+                        <div class="ai-chat-header-actions">
+                            <button class="ai-skip-intro" id="aiSkipIntro" type="button" hidden>Пропустить</button>
                             <span class="ai-online"><i></i>Онлайн</span>
+                        </div>
                     </header>
 
                     <div class="ai-message-history" id="aiMessageHistory" aria-live="polite" aria-label="История диалога"></div>
 
                     <form class="ai-chat-input" id="aiChatForm">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.3 20.1 3c.7-.3 1.4.4 1.1 1.1l-8.3 17.1c-.3.7-1.3.6-1.5-.1l-1.5-6-6-1.5c-.7-.2-.8-1.2-.1-1.5l9.3-4.7-7.7 5.3 5.3 1.3 1.3 5.3L17.3 6l-4.7 9.3"/></svg>
+                        <textarea id="aiChatText" rows="1" maxlength="1000" placeholder="Напишите сообщение Лане..." aria-label="Сообщение Лане" disabled></textarea>
+                        <button type="submit" aria-label="Отправить сообщение" disabled>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.3 20.1 3c.7-.3 1.4.4 1.1 1.1l-8.3 17.1c-.3.7-1.3.6-1.5-.1-0.2-.7-0.5-1.9-1.5-6l-6-1.5c-.7-.2-.8-1.2-.1-1.5l9.3-4.7-7.7 5.3 5.3 1.3 1.3 5.3L17.3 6l-4.7 9.3"/></svg>
                         </button>
                     </form>
                 </div>
@@ -91,6 +97,8 @@
         </section>
     </main>
 </div>
+<script th:src="@{/js/ai-agent-api.js}" src="/js/ai-agent-api.js"></script>
+<script th:src="@{/js/ai-agent-process.js}" src="/js/ai-agent-process.js"></script>
 <script th:src="@{/js/ai-agent.js}" src="/js/ai-agent.js" defer></script>
 </body>
 </html>
