@@ -1,6 +1,7 @@
 package ru.portfolio.sa.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,9 @@ import java.util.Map;
 
 @Controller
 public class PortfolioController {
+
+    @Value("${ai-agent.api-url}")
+    private String aiAgentApiUrl;
 
     private static final Map<String, String> SECTIONS = new LinkedHashMap<>();
 
@@ -49,6 +53,12 @@ public class PortfolioController {
         return "antistress";
     }
 
+    @GetMapping("/section/ai-agent")
+    public String aiAgent(Model model) {
+        addSectionModel(model, "ai-agent");
+        return "ai-agent";
+    }
+
 
     @GetMapping("/section/{slug}")
     public String section(@PathVariable String slug, Model model) {
@@ -63,5 +73,6 @@ public class PortfolioController {
         model.addAttribute("sections", SECTIONS);
         model.addAttribute("activeSlug", activeSlug);
         model.addAttribute("activeTitle", SECTIONS.get(activeSlug));
+        model.addAttribute("aiAgentApiUrl", aiAgentApiUrl);
     }
 }
