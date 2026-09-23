@@ -15,8 +15,8 @@ public class PortfolioController {
     @Value("${ai-agent.api-url}")
     private String aiAgentApiUrl;
 
-    @Value("${integra.base-url}")
-    private String integraBaseUrl;
+    @Value("${evening-plans.api-url}")
+    private String eveningPlansApiUrl;
 
     @Value("${evening-plans.mock-enabled:false}")
     private boolean eveningPlansMockEnabled;
@@ -70,7 +70,7 @@ public class PortfolioController {
     @GetMapping("/section/evening-plans")
     public String eveningPlans(Model model) {
         addSectionModel(model, "evening-plans");
-        model.addAttribute("eveningPlansBaseUrl", integraBaseUrl);
+        model.addAttribute("eveningPlansApiUrl", eveningPlansApiUrl);
         model.addAttribute("eveningPlansMockEnabled", eveningPlansMockEnabled);
         return "evening-plans";
     }

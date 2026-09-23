@@ -11,16 +11,16 @@ import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest(properties = {"integra.base-url=https://integra.example.test", "evening-plans.mock-enabled=false"})
+@SpringBootTest(properties = {"evening-plans.api-url=https://plans.example.test/rest/evening-plans", "evening-plans.mock-enabled=false"})
 @AutoConfigureMockMvc
 class EveningPlansTest {
     @Autowired MockMvc mvc;
 
     @Test
-    void pageUsesConfiguredIntegraAndSharedNavigation() throws Exception {
+    void pageUsesConfiguredEndpointAndSharedNavigation() throws Exception {
         mvc.perform(get("/section/evening-plans"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("content=\"https://integra.example.test\"")))
+                .andExpect(content().string(containsString("content=\"https://plans.example.test/rest/evening-plans\"")))
                 .andExpect(content().string(not(containsString("/api/demo/evening-plans"))))
                 .andExpect(content().string(containsString("active\">Планы на вечер</a>")))
                 .andExpect(content().string(containsString("/js/evening-plans-api.js")))

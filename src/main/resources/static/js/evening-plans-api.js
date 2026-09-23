@@ -1,17 +1,17 @@
 (() => {
     'use strict';
-    const baseUrl = (document.querySelector('meta[name="evening-plans-base-url"]')?.content || '').trim().replace(/\/+$/, '');
+    const apiUrl = (document.querySelector('meta[name="evening-plans-api-url"]')?.content || '').trim();
     const mockUrl = document.querySelector('meta[name="evening-plans-mock-url"]')?.content;
 
     window.eveningPlansApi = {
         async findPlans(payload) {
-            if (!mockUrl && !baseUrl) {
+            if (!mockUrl && !apiUrl) {
                 throw new Error('Сейчас не получилось загрузить идеи для вечера. Попробуйте еще раз чуть позже.');
             }
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 45000);
             try {
-                const response = await fetch(mockUrl || `${baseUrl}/api/evening-plans`, {
+                const response = await fetch(mockUrl || apiUrl, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                     body: JSON.stringify(payload),

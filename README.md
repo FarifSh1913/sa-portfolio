@@ -51,13 +51,15 @@ Caddy автоматически запросит и обновит беспла
 Раздел: `/section/evening-plans`. Spring Boot + Thymeleaf + vanilla JS;
 sa-portfolio собирает и валидирует ввод, затем отображает ответ без бизнес-правил.
 
-- `INTEGRA_BASE_URL` — доступный **браузеру** базовый URL Integra (без `/api/evening-plans`),
-  по умолчанию `http://localhost:8090` для локальной разработки. В production задайте HTTPS URL.
+- `EVENING_PLANS_API_URL` — доступный **браузеру** полный URL endpoint.
+  Локально без env используется `http://localhost:8090/api/evening-plans`.
+  В Docker Compose production-адрес по умолчанию задан в `docker-compose.yml`;
+  переменная окружения позволяет его переопределить. JavaScript не добавляет путь.
 - `EVENING_PLANS_MOCK_ENABLED=true` включает отдельный POST `/api/demo/evening-plans`
   со статичным `demo/evening-plans.json`. По умолчанию `false`, demo endpoint отсутствует.
   Демо явно обозначено на странице и не зависит от параметров формы.
 
-Обычный режим отправляет один POST `{INTEGRA_BASE_URL}/api/evening-plans`, без retry,
+Обычный режим отправляет один POST `{EVENING_PLANS_API_URL}`, без retry,
 с `Content-Type: application/json` и таймаутом 45 секунд:
 
 ```json
