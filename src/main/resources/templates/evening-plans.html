@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Планы на вечер — System Analyst Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/evening-plans.css}">
+    <meta name="evening-plans-base-url" th:content="${eveningPlansBaseUrl}">
+    <meta name="evening-plans-mock-url" th:content="${eveningPlansMockEnabled} ? @{/api/demo/evening-plans} : ''">
+</head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+    <main class="content-area evening-page" id="eveningPage" data-state="FORM">
+        <header class="evening-hero">
+            <div class="evening-hero-copy"><span class="evening-kicker">МАЛЕНЬКОЕ ПРИКЛЮЧЕНИЕ РЯДОМ</span>
+                <h1>Планы на вечер<span>Выйдите за рамки будней.</span></h1>
+                <p>Подберите идеи для прогулки, свидания, встречи с друзьями или спокойного вечера в городе.</p>
+                <div class="evening-hero-tags"><span>✦ Новые впечатления</span><span>♡ Ваша компания</span><span>↗ Ваш ритм</span></div>
+            </div>
+            <div class="evening-postcards" aria-hidden="true">
+                <div class="evening-orbit"></div><span class="evening-star">✦</span>
+                <div class="evening-postcard evening-postcard-back"><span>☕</span><small>Никуда не спешить</small><b>Кофе & разговоры</b></div>
+                <div class="evening-postcard evening-postcard-front"><span>🌇</span><small>Поймать момент</small><b>Город на закате</b></div>
+                <span class="evening-ticket">Сегодня — для себя ♡</span>
+            </div>
+        </header>
+        <p class="evening-demo" th:if="${eveningPlansMockEnabled}">Демо-режим: знакомимся с подборкой на примере Москвы. В этом режиме выбранные параметры не меняют идеи.</p>
+        <section class="evening-panel" aria-labelledby="formTitle">
+            <div class="evening-section-heading"><div><span class="evening-kicker">НАЧНЕМ С ВАШИХ ПОЖЕЛАНИЙ</span><h2 id="formTitle">Каким будет ваш вечер?</h2></div><span class="evening-soft-badge">✦ Решать вам</span></div>
+            <p class="evening-helper">Укажите город, бюджет и интересы — мы покажем, куда можно сходить и как интересно провести вечер.</p>
+            <form id="eveningForm" novalidate aria-describedby="formError">
+                <fieldset id="eveningFields">
+                    <legend class="visually-hidden">Параметры вечера</legend>
+                    <div class="evening-form-grid">
+                        <label class="evening-city">Город<select class="form-select" name="city" required><option value="Москва">Москва</option><option value="Санкт-Петербург">Санкт-Петербург</option><option value="Казань">Казань</option><option value="Нижний Новгород">Нижний Новгород</option><option value="Екатеринбург">Екатеринбург</option><option value="Новосибирск">Новосибирск</option><option value="Краснодар">Краснодар</option><option value="Сочи">Сочи</option><option value="Ростов-на-Дону">Ростов-на-Дону</option><option value="Самара">Самара</option><option value="Уфа">Уфа</option><option value="Калининград">Калининград</option><option value="Владивосток">Владивосток</option><option value="Тюмень">Тюмень</option><option value="Воронеж">Воронеж</option></select></label>
+                        <label>Дата<input class="form-control" name="date" type="date" required></label>
+                        <label>Время с<input class="form-control" name="timeFrom" type="time" value="18:00" required></label>
+                        <label>Время до<input class="form-control" name="timeTo" type="time" value="23:00" required></label>
+                        <label>Бюджет, ₽<input class="form-control" name="budget" type="number" min="0" step="any" value="3000" required></label>
+                    </div>
+                    <fieldset class="evening-company"><legend>С кем идем?</legend><div class="evening-company-grid">
+                        <label><input type="radio" name="company" value="solo" required><span><i aria-hidden="true">☀</i>Для себя</span></label>
+                        <label><input type="radio" name="company" value="couple" checked required><span><i aria-hidden="true">♡</i>Вдвоем</span></label>
+                        <label><input type="radio" name="company" value="friends" required><span><i aria-hidden="true">✌</i>С друзьями</span></label>
+                        <label><input type="radio" name="company" value="family" required><span><i aria-hidden="true">⌂</i>С семьей</span></label>
+                    </div></fieldset>
+                    <fieldset class="evening-preferences"><legend>Что вам по душе? <small>Можно выбрать несколько</small></legend>
+                        <div class="evening-choice-grid">
+                            <label><input type="checkbox" name="preferences" value="walk" checked><span><i aria-hidden="true">🌿</i>Прогулка</span></label>
+                            <label><input type="checkbox" name="preferences" value="museum" checked><span><i aria-hidden="true">🏛</i>Музей</span></label>
+                            <label><input type="checkbox" name="preferences" value="exhibition"><span><i aria-hidden="true">🎨</i>Выставка</span></label>
+                            <label><input type="checkbox" name="preferences" value="cafe" checked><span><i aria-hidden="true">☕</i>Кафе</span></label>
+                            <label><input type="checkbox" name="preferences" value="restaurant"><span><i aria-hidden="true">🍽</i>Ресторан</span></label>
+                            <label><input type="checkbox" name="preferences" value="cinema"><span><i aria-hidden="true">🎬</i>Кино</span></label>
+                            <label><input type="checkbox" name="preferences" value="concert"><span><i aria-hidden="true">♫</i>Концерт</span></label>
+                            <label><input type="checkbox" name="preferences" value="theatre"><span><i aria-hidden="true">🎭</i>Театр</span></label>
+                            <label><input type="checkbox" name="preferences" value="free"><span><i aria-hidden="true">🎁</i>Бесплатно</span></label>
+                            <label><input type="checkbox" name="preferences" value="unusual"><span><i aria-hidden="true">✦</i>Необычно</span></label>
+                        </div>
+                    </fieldset>
+                    <div class="evening-form-footer"><p>Хороший вечер начинается с одной идеи.</p><button class="btn evening-submit" type="submit"><span id="eveningSpinner" class="spinner-border spinner-border-sm" aria-hidden="true" hidden></span> <span id="eveningButtonText">Найти идеи для вечера <span aria-hidden="true">↗</span></span></button></div>
+                </fieldset>
+                <p id="formError" class="evening-error" role="alert" hidden></p>
+            </form>
+            <p id="eveningStatus" role="status" aria-live="polite"></p>
+            <noscript>Для подбора планов включите JavaScript в браузере.</noscript>
+        </section>
+        <section id="eveningWelcome" class="evening-welcome" aria-labelledby="welcomeTitle">
+            <span class="evening-kicker">НЕМНОГО ВДОХНОВЕНИЯ</span><h2 id="welcomeTitle">У каждого вечера — свое настроение</h2>
+            <p>Выберите то, что нравится. Здесь появятся идеи для вашего вечера.</p>
+            <div class="evening-inspiration"><div><span aria-hidden="true">🌿</span><b>Прогулка + кафе</b><small>Свежий воздух и теплые разговоры</small></div><div><span aria-hidden="true">🎨</span><b>Музей + ресторан</b><small>Впечатления со вкусом</small></div><div><span aria-hidden="true">♫</span><b>Концерт + ужин</b><small>Вечер, который хочется запомнить</small></div></div>
+        </section>
+        <section id="eveningLoading" class="evening-loading" aria-label="Ищем идеи для вашего вечера" hidden>
+            <div class="evening-loading-heading"><span class="evening-pulse" aria-hidden="true">✦</span><div><h2>Ваш вечер обретает форму</h2><p>Подбираем мероприятия и подходящие места…</p></div></div>
+            <div class="evening-skeleton-grid" aria-hidden="true"><div class="evening-skeleton"><i></i><i></i><i></i></div><div class="evening-skeleton"><i></i><i></i><i></i></div></div>
+        </section>
+        <section id="eveningResults" aria-label="Идеи для вашего вечера" aria-live="polite" hidden></section>
+    </main>
+</div>
+<script th:src="@{/js/evening-plans-api.js}" defer></script>
+<script th:src="@{/js/evening-plans.js}" defer></script>
+</body>
+</html>
