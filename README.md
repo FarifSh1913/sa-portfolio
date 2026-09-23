@@ -77,3 +77,16 @@ sa-portfolio собирает и валидирует ввод, затем от�
 POST / OPTIONS и заголовков Content-Type / Accept. Браузер может отправить
 служебный OPTIONS preflight; бизнес-запрос остается одним POST.
 Ключи внешних API хранятся только в Integra. AI-этап пока информационный.
+
+## API Ланы
+
+`AI_AGENT_API_URL` задает базовый адрес ai-agent-service (без пути `/api/v1`).
+Для production: `AI_AGENT_API_URL=https://ai.lordfarif.ru`. Docker Compose
+использует этот адрес по умолчанию, переменная окружения позволяет его переопределить.
+Для локального запуска: `AI_AGENT_API_URL=http://localhost:8082`; это также
+значение по умолчанию при запуске приложения без Docker Compose.
+
+Адрес передается через `ai-agent.api-url` → PortfolioController → Thymeleaf meta.
+Chat и process API сохраняют свои пути; относительные ссылки изображений
+`/api/v1/images/{id}` разрешаются относительно адреса AI-сервиса.
+Прежняя переменная `VITE_AI_AGENT_API_URL` заменена на `AI_AGENT_API_URL`.

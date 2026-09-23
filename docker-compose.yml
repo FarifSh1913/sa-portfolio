@@ -2,6 +2,7 @@ services:
   app:
     build: .
     environment:
+      AI_AGENT_API_URL: ${AI_AGENT_API_URL:-https://ai.lordfarif.ru}
       EVENING_PLANS_API_URL: ${EVENING_PLANS_API_URL:-https://integra.7tech.cloud/rest/evening-plans}
     restart: unless-stopped
     expose:
