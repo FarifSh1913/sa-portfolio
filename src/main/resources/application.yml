@@ -10,3 +10,7 @@ management:
         include: health,info
 ai-agent:
   api-url: ${VITE_AI_AGENT_API_URL:http://localhost:8082}
+integra:
+  base-url: ${INTEGRA_BASE_URL:http://localhost:8090}
+evening-plans:
+  mock-enabled: ${EVENING_PLANS_MOCK_ENABLED:false}

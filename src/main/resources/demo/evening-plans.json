@@ -1,0 +1,23 @@
+{
+  "requestId": "demo-evening-plans",
+  "city": "Москва",
+  "date": "2026-09-23",
+  "timeFrom": "18:00",
+  "timeTo": "23:00",
+  "weather": {"temperature": 16, "rain": false, "windSpeed": 7, "description": "Без дождя, подходит для прогулки"},
+  "plans": [
+    {
+      "id": "plan-1",
+      "title": "Прогулка + выставка + кафе",
+      "description": "Прогулка перед выставкой, затем кафе рядом с местом проведения.",
+      "estimatedBudget": 2600,
+      "durationMinutes": 240,
+      "items": [
+        {"type": "walk", "title": "Прогулка в парке", "startTime": "18:00", "endTime": "19:00", "price": 0},
+        {"type": "event", "title": "Выставка современного искусства", "startTime": "19:30", "endTime": "21:00", "price": 800, "source": "KudaGo"},
+        {"type": "cafe", "title": "Кафе рядом с выставкой", "startTime": "21:15", "price": 1800, "source": "2GIS"}
+      ]
+    },
+    {"id": "plan-2", "title": "Музей + ресторан", "description": "Еще один демонстрационный вариант вечера.", "estimatedBudget": 2900, "durationMinutes": 180}
+  ]
+}
