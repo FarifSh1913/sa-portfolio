@@ -15,6 +15,12 @@ public class PortfolioController {
     @Value("${ai-agent.api-url}")
     private String aiAgentApiUrl;
 
+    @Value("${evening-plans.api-url}")
+    private String eveningPlansApiUrl;
+
+    @Value("${evening-plans.mock-enabled:false}")
+    private boolean eveningPlansMockEnabled;
+
     private static final Map<String, String> SECTIONS = new LinkedHashMap<>();
 
     static {
@@ -26,6 +32,7 @@ public class PortfolioController {
         SECTIONS.put("soap", "SOAP");
         SECTIONS.put("database", "Базы данных");
         SECTIONS.put("ai-agent", "Camunda + AI агент");
+        SECTIONS.put("evening-plans", "Планы на вечер");
         SECTIONS.put("antistress", "Антистресс аналитика");
     }
 
@@ -59,6 +66,14 @@ public class PortfolioController {
         return "ai-agent";
     }
 
+
+    @GetMapping("/section/evening-plans")
+    public String eveningPlans(Model model) {
+        addSectionModel(model, "evening-plans");
+        model.addAttribute("eveningPlansApiUrl", eveningPlansApiUrl);
+        model.addAttribute("eveningPlansMockEnabled", eveningPlansMockEnabled);
+        return "evening-plans";
+    }
 
     @GetMapping("/section/{slug}")
     public String section(@PathVariable String slug, Model model) {

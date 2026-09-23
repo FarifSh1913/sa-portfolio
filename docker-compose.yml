@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    environment:
+      EVENING_PLANS_API_URL: ${EVENING_PLANS_API_URL:-https://integra.7tech.cloud/rest/evening-plans}
     restart: unless-stopped
     expose:
       - "8080"

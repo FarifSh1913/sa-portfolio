@@ -10,3 +10,6 @@ management:
         include: health,info
 ai-agent:
   api-url: ${VITE_AI_AGENT_API_URL:http://localhost:8082}
+evening-plans:
+  api-url: ${EVENING_PLANS_API_URL:http://localhost:8090/api/evening-plans}
+  mock-enabled: ${EVENING_PLANS_MOCK_ENABLED:false}
