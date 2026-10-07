@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Энерго (Обращения) — System Analyst Portfolio</title><link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}"><link rel="stylesheet" th:href="@{/css/energo.css}">
+    <link rel="stylesheet" th:href="@{/css/energo-applications.css}">
+</head>
+<body><div class="app-shell">
+<aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+<main class="content-area energo-page" id="applicationsPage" th:attr="data-api=@{/api/integration/applications}">
+    <header class="energo-heading"><div><span class="energo-kicker">ИНТЕГРАЦИОННЫЙ КЕЙС 2</span><h1>Энерго<span class="energo-spark" aria-hidden="true">↯</span></h1><p>Подача заявлений из ЛК и рассылка оповещений об их обработке по почте</p></div><a th:href="@{/}" class="btn btn-outline-secondary">На главную</a></header>
+    <div id="notification" class="applications-notification" role="status" aria-live="polite" hidden></div>
+    <section class="energo-board applications-zone" aria-labelledby="clientTitle">
+        <div class="energo-account"><header class="energo-section-header"><div><span class="energo-kicker">КЛИЕНТ · ОБРАЩЕНИЯ</span><h2 id="clientTitle">ЛК Энерго</h2><p>Заявления и результаты их обработки</p></div><button id="createApplication" class="energo-primary" title="Создать обращение" aria-label="Создать обращение" disabled>✉ <span>Создать обращение</span></button></header>
+            <div id="clientPicker" class="applications-picker"></div>
+            <div id="clientInfo" class="energo-card" aria-live="polite">Выберите клиента</div>
+            <div class="applications-registry-heading"><h3>Мои заявления</h3><button id="clientRefresh" class="energo-retry" disabled>Обновить</button></div>
+            <div id="clientState" class="energo-state" role="status">Выберите клиента</div><ul id="clientRegistry" class="energo-records" aria-label="Заявления клиента"></ul>
+        </div>
+    </section>
+    <section class="energo-board applications-zone applications-crm" aria-labelledby="employeeTitle">
+        <div class="energo-account"><header class="energo-section-header"><div><span class="energo-kicker">СОТРУДНИК · ОБРАБОТКА</span><h2 id="employeeTitle">ЛК CRM</h2><p>Рассмотрение и обработка заявлений</p></div><span class="applications-bell" title="Уведомления будут доступны позже" aria-label="Уведомления будут доступны позже"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></span></header>
+            <div class="applications-employee-picker"><div id="employeePicker" class="applications-picker"></div><button id="confirmEmployee" class="energo-primary" disabled>Подтвердить</button></div>
+            <div id="employeeInfo" class="energo-card" aria-live="polite">Выберите сотрудника</div>
+            <div class="applications-registry-heading"><h3>Заявления сотрудника</h3><button id="employeeRefresh" class="energo-retry" disabled>Обновить</button></div>
+            <div id="employeeState" class="energo-state" role="status">Выберите сотрудника и нажмите «Подтвердить»</div><ul id="employeeRegistry" class="energo-records" aria-label="Заявления сотрудника"></ul>
+        </div>
+    </section>
+    <dialog id="detailDialog" class="energo-dialog" aria-labelledby="detailTitle"><header class="energo-dialog-header"><div><span class="energo-kicker">КАРТОЧКА ЗАЯВЛЕНИЯ</span><h2 id="detailTitle">Заявление</h2></div><button class="energo-dialog-x" data-close aria-label="Закрыть">×</button></header><div id="detailBody" class="energo-dialog-body"></div><footer id="detailActions" class="energo-dialog-footer applications-actions"></footer></dialog>
+    <dialog id="createDialog" class="energo-dialog" aria-labelledby="createTitle"><header class="energo-dialog-header"><h2 id="createTitle">Создать обращение</h2><button class="energo-dialog-x" data-close aria-label="Закрыть">×</button></header>
+        <form id="createForm" class="energo-dialog-body applications-form"><fieldset><label>Тема обращения<input name="subject" class="form-control" maxlength="150" required></label><label>Текст обращения<textarea name="description" class="form-control" maxlength="1000" rows="6" required></textarea><small data-counter>0 / 1000</small></label><label>Файл — необязательный<input name="file" type="file" class="form-control" accept=".png,.jpg,.jpeg,.pdf"><small>До 10 МБ</small></label><div class="energo-state is-error" data-error role="status"></div><button class="energo-primary" type="submit">Отправить обращение</button></fieldset></form>
+    </dialog>
+    <dialog id="actionDialog" class="energo-dialog" aria-labelledby="actionTitle"><header class="energo-dialog-header"><h2 id="actionTitle">Подтверждение действия</h2><button class="energo-dialog-x" data-close aria-label="Закрыть">×</button></header>
+        <form id="actionForm" class="energo-dialog-body applications-form"><fieldset><p id="actionPrompt"></p><label id="actionTextLabel"><span id="actionTextTitle"></span><textarea name="note" class="form-control" maxlength="1000" rows="5"></textarea><small data-counter>0 / 1000</small></label><label>Файл — необязательный<input name="file" type="file" class="form-control" accept=".png,.jpg,.jpeg,.pdf"><small>До 10 МБ</small></label><div class="energo-state is-error" data-error role="status"></div><button class="energo-primary" type="submit">Подтвердить</button></fieldset></form>
+    </dialog>
+    <noscript>Для работы с обращениями включите JavaScript.</noscript>
+</main></div><script th:src="@{/js/energo-applications.js}" defer></script></body></html>

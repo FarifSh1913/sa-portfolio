@@ -20,7 +20,7 @@ class EveningPlansTest {
     void pageUsesConfiguredEndpointAndSharedNavigation() throws Exception {
         mvc.perform(get("/section/evening-plans"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("content=\"https://plans.example.test/rest/evening-plans\"")))
+                .andExpect(content().string(containsString("content=\"/api/integration/evening-plans\"")))
                 .andExpect(content().string(not(containsString("/api/demo/evening-plans"))))
                 .andExpect(content().string(containsString("active\">Планы на вечер</a>")))
                 .andExpect(content().string(containsString("/js/evening-plans-api.js")))

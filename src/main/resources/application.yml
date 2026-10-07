@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
   application:
     name: sa-portfolio
 management:
@@ -11,5 +15,11 @@ management:
 ai-agent:
   api-url: ${AI_AGENT_API_URL:http://localhost:8082}
 evening-plans:
-  api-url: ${EVENING_PLANS_API_URL:http://localhost:8090/api/evening-plans}
+  api-url: ${EVENING_PLANS_API_URL:${integra.base-url}/rest/evening-plans}
   mock-enabled: ${EVENING_PLANS_MOCK_ENABLED:false}
+
+integra:
+  base-url: ${INTEGRA_BASE_URL:https://integra-preprod.7tech.cloud}
+  account-info-path: /rest/accaunt-info
+  crm-path: /rest/accaunt-details/all
+  finance-path: /rest/fin-results

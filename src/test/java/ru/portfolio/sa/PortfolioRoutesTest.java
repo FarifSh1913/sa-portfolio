@@ -21,6 +21,26 @@ class PortfolioRoutesTest {
     private MockMvc mockMvc;
 
     @Test
+    void applicationsPageUsesSharedStylesAndSeparateRegistryControls() throws Exception {
+        mockMvc.perform(get("/section/energo-applications")).andExpect(status().isOk())
+                .andExpect(content().string(containsString("/css/energo.css")))
+                .andExpect(content().string(containsString("id=\"confirmEmployee\"")))
+                .andExpect(content().string(containsString("/api/integration/applications")));
+    }
+
+    @Test
+    void energoReplacesRemovedSections() throws Exception {
+        String html = mockMvc.perform(get("/section/energo")).andExpect(status().isOk())
+                .andExpect(content().string(containsString("id=\"accountForm\"")))
+                .andExpect(content().string(containsString("/js/sidebar.js")))
+                .andReturn().getResponse().getContentAsString();
+        for (String slug : new String[]{"rest", "kafka", "camunda", "soap", "database"}) {
+            mockMvc.perform(get("/section/" + slug)).andExpect(status().isNotFound());
+            org.junit.jupiter.api.Assertions.assertFalse(html.contains("href=\"/section/" + slug + "\""));
+        }
+    }
+
+    @Test
     void storyLaunchStartsWithArchitecture() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -94,7 +114,7 @@ class PortfolioRoutesTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("const STORY_MESSAGES")))
                 .andExpect(content().string(containsString("sender: 'nikolay'")))
-                .andExpect(content().string(containsString("messageHistory.scrollTo")));
+                .andExpect(content().string(containsString("history.scrollTo")));
         mockMvc.perform(get("/css/ai-agent.css")).andExpect(status().isOk());
         mockMvc.perform(get("/img/Машина целая.png")).andExpect(status().isOk());
         mockMvc.perform(get("/img/Машина разбитая.png")).andExpect(status().isOk());

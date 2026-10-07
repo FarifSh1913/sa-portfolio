@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -15,9 +14,6 @@ public class PortfolioController {
     @Value("${ai-agent.api-url}")
     private String aiAgentApiUrl;
 
-    @Value("${evening-plans.api-url}")
-    private String eveningPlansApiUrl;
-
     @Value("${evening-plans.mock-enabled:false}")
     private boolean eveningPlansMockEnabled;
 
@@ -26,13 +22,10 @@ public class PortfolioController {
     static {
         SECTIONS.put("architecture", "Архитектура");
         SECTIONS.put("artifacts", "Артефакты аналитика");
-        SECTIONS.put("rest", "REST API");
-        SECTIONS.put("kafka", "Kafka");
-        SECTIONS.put("camunda", "Camunda");
-        SECTIONS.put("soap", "SOAP");
-        SECTIONS.put("database", "Базы данных");
         SECTIONS.put("ai-agent", "Camunda + AI агент");
         SECTIONS.put("evening-plans", "Планы на вечер");
+        SECTIONS.put("energo", "Энерго (Информация о клиенте)");
+        SECTIONS.put("energo-applications", "Энерго (Обращения)");
         SECTIONS.put("antistress", "Антистресс аналитика");
     }
 
@@ -70,18 +63,21 @@ public class PortfolioController {
     @GetMapping("/section/evening-plans")
     public String eveningPlans(Model model) {
         addSectionModel(model, "evening-plans");
-        model.addAttribute("eveningPlansApiUrl", eveningPlansApiUrl);
+        model.addAttribute("eveningPlansApiUrl", "/api/integration/evening-plans");
         model.addAttribute("eveningPlansMockEnabled", eveningPlansMockEnabled);
         return "evening-plans";
     }
 
-    @GetMapping("/section/{slug}")
-    public String section(@PathVariable String slug, Model model) {
-        if (!SECTIONS.containsKey(slug)) {
-            return "redirect:/section/artifacts";
-        }
-        addSectionModel(model, slug);
-        return "section";
+    @GetMapping("/section/energo")
+    public String energo(Model model) {
+        addSectionModel(model, "energo");
+        return "energo";
+    }
+
+    @GetMapping("/section/energo-applications")
+    public String energoApplications(Model model) {
+        addSectionModel(model, "energo-applications");
+        return "energo-applications";
     }
 
     private void addSectionModel(Model model, String activeSlug) {
