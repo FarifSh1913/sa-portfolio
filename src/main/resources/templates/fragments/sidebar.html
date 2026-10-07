@@ -2,6 +2,7 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <body>
 <aside th:fragment="sidebar" class="sidebar d-flex flex-column p-3">
+    <div class="sidebar-content" id="sidebarContent">
     <a th:href="@{/}" class="brand text-decoration-none mb-4">
         <span class="brand-dot"></span>
         SA Portfolio
@@ -14,6 +15,9 @@
            class="nav-link">Раздел</a>
     </nav>
     <div class="mt-auto small text-secondary pt-4">Spring Boot · Bootstrap · Java 21</div>
+    </div>
+    <div class="sidebar-edge"><button class="sidebar-toggle" type="button" aria-controls="sidebarContent" aria-expanded="true" aria-label="Свернуть меню" title="Свернуть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button></div>
+    <script th:src="@{/js/sidebar.js}" defer></script>
 </aside>
 </body>
 </html>

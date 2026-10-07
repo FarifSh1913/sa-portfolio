@@ -156,3 +156,23 @@ body {
     }
 }
 
+
+/* Shared navigation: keep the existing stacked mobile layout. */
+.sidebar-content { display:flex; flex-direction:column; flex:1; min-height:0; overflow-y:auto; }
+.sidebar-edge { display:none; }
+@media (min-width:721px) {
+    .sidebar { z-index:30; transition:width .25s ease; }
+    .content-area { transition:margin-left .25s ease; min-width:0; }
+    .sidebar-content { width:calc(var(--sidebar-width) - 32px); transition:opacity .15s ease; }
+    .sidebar-edge { display:flex; align-items:center; justify-content:center; position:absolute; right:-12px; top:0; bottom:0; width:28px; }
+    .sidebar-toggle { opacity:0; display:grid; place-items:center; width:28px; height:48px; padding:3px; border:1px solid #475569; border-radius:10px; color:#fff; background:#1f2937; transition:opacity .15s,background .15s; }
+    .sidebar-toggle svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; }
+    .sidebar-edge:hover .sidebar-toggle,.sidebar-toggle:focus-visible,.sidebar-collapsed .sidebar-toggle { opacity:1; }
+    .sidebar-toggle:hover { background:#374151; }
+    .sidebar-collapsed .sidebar { width:44px; }
+    .sidebar-collapsed .sidebar-content { opacity:0; visibility:hidden; }
+    .sidebar-collapsed .content-area { margin-left:44px; }
+    .sidebar-collapsed .sidebar-toggle svg { transform:rotate(180deg); }
+}
+@media (hover:none) and (min-width:721px) { .sidebar-toggle { opacity:1; } }
+@media (prefers-reduced-motion:reduce) { .sidebar,.sidebar-content,.sidebar-toggle,.content-area { transition:none; } }

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Энерго (Информация о клиенте) — System Analyst Portfolio</title>
+    <link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/energo.css}">
+</head>
+<body>
+<div class="app-shell">
+    <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+    <main class="content-area energo-page">
+        <header class="energo-heading">
+            <div><span class="energo-kicker">ИНТЕГРАЦИОННЫЙ КЕЙС 1</span><h1>Энерго<span class="energo-spark" aria-hidden="true">↯</span></h1>
+                <p>Актуализация информации о клиенте в Личном Кабинете (ЛК) по информации из CRM и ЖКХ</p></div>
+            <a th:href="@{/}" class="btn btn-outline-secondary">На главную</a>
+        </header>
+        <div class="energo-board">
+            <section class="energo-account" aria-labelledby="accountTitle">
+                <header class="energo-section-header"><div><span class="energo-kicker">ЛК · АГРЕГИРОВАННАЯ СВОДКА</span><h2 id="accountTitle">Личный кабинет</h2><p>Реквизиты и финансы — в одном запросе.</p></div><span class="energo-system-tag">Клиент</span></header>
+                <form id="accountForm" th:attr="data-url=@{/api/integration/accaunt-info}">
+                    <fieldset id="accountFields" class="energo-form"><legend class="visually-hidden">Запрос по лицевому счету</legend>
+                        <label>Client ID<input class="form-control" name="clientId" value="CL-100245" maxlength="128" required autocomplete="off"></label>
+                        <label>Лицевой счет<input class="form-control" name="personalAccount" value="123456789" maxlength="128" required autocomplete="off"></label>
+                        <button type="submit" class="energo-primary" id="accountSubmit">Запросить сводку</button>
+                    </fieldset>
+                </form>
+                <div id="accountState" class="energo-state" role="status" aria-live="polite">Введите данные и запросите сводку по лицевому счету.</div>
+                <button id="accountRetry" class="energo-retry" type="button" hidden>Повторить</button>
+                <div id="accountResult" class="energo-summary" aria-live="polite"></div>
+            </section>
+            <div class="energo-legend"><span>CRM · реквизиты</span><span aria-hidden="true">+</span><span>ЖКХ · финансы</span><span aria-hidden="true">→</span><strong>Integra</strong><span aria-hidden="true">→</span><span>ЛК · сводка</span><small>Данные агрегируются через Integra</small></div>
+            <div class="energo-sources">
+                <section class="energo-source" aria-labelledby="crmTitle" id="crm" th:attr="data-url=@{/api/integration/crm}">
+                    <header><span class="energo-kicker">ИСТОЧНИК 01</span><div class="energo-source-title"><h2 id="crmTitle">CRM</h2><span class="energo-count" hidden></span></div><p>Реквизиты клиентов</p></header>
+                    <div class="energo-state" role="status" aria-live="polite">Получаем данные CRM...</div>
+                    <button class="energo-retry" type="button" hidden>Повторить</button>
+                    <div class="energo-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+                    <ul class="energo-records" aria-label="Записи реестра"></ul>
+                    <p class="energo-registry-hint" hidden>Выберите запись, чтобы посмотреть подробности</p>
+                </section>
+                <section class="energo-source" aria-labelledby="financeTitle" id="finance" th:attr="data-url=@{/api/integration/finance}">
+                    <header><span class="energo-kicker">ИСТОЧНИК 02</span><div class="energo-source-title"><h2 id="financeTitle">ЖКХ</h2><span class="energo-count" hidden></span></div><p>Финансовые показатели</p></header>
+                    <div class="energo-state" role="status" aria-live="polite">Получаем финансовые данные...</div>
+                    <button class="energo-retry" type="button" hidden>Повторить</button>
+                    <div class="energo-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>
+                    <ul class="energo-records" aria-label="Записи реестра"></ul>
+                    <p class="energo-registry-hint" hidden>Выберите запись, чтобы посмотреть подробности</p>
+                </section>
+            </div>
+        </div>
+        <noscript>Для запроса сводки и загрузки источников включите JavaScript.</noscript>
+        <dialog id="energoDialog" class="energo-dialog" aria-labelledby="energoDialogTitle" aria-describedby="energoDialogSource">
+            <header class="energo-dialog-header"><div><span id="energoDialogSource" class="energo-kicker"></span><h2 id="energoDialogTitle"></h2></div><button type="button" class="energo-dialog-x" aria-label="Закрыть карточку">×</button></header>
+            <div id="energoDialogBody" class="energo-dialog-body"></div>
+            <footer class="energo-dialog-footer"><button type="button" class="energo-retry" id="energoDialogClose">Закрыть</button></footer>
+        </dialog>
+    </main>
+</div>
+<script th:src="@{/js/energo.js}" defer></script>
+</body>
+</html>

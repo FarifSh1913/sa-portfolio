@@ -3,7 +3,7 @@ services:
     build: .
     environment:
       AI_AGENT_API_URL: ${AI_AGENT_API_URL:-https://ai.lordfarif.ru}
-      EVENING_PLANS_API_URL: ${EVENING_PLANS_API_URL:-https://integra.7tech.cloud/rest/evening-plans}
+      INTEGRA_BASE_URL: ${INTEGRA_BASE_URL:-https://integra-preprod.7tech.cloud}
     restart: unless-stopped
     expose:
       - "8080"

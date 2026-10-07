@@ -1,0 +1,36 @@
+.applications-zone { margin-bottom:28px; overflow:visible; }
+.applications-zone .energo-account { border-radius:24px; }
+.applications-crm { background:#fcfcfb; }
+.applications-crm .energo-account { border-top-color:#74766c; }
+.applications-picker { position:relative; min-width:0; max-width:680px; }
+.applications-picker label { display:block; font-size:.8rem; font-weight:650; margin-bottom:8px; }
+.applications-picker input { width:100%; padding:13px 38px 13px 14px; border:1px solid #dddedb; border-radius:12px; background:#fff; }
+.applications-picker input:focus { outline:3px solid #f46b0820; border-color:var(--energy); }
+.applications-options { position:absolute; z-index:5; top:100%; left:0; right:0; margin:5px 0; padding:6px; list-style:none; max-height:260px; overflow:auto; border:1px solid var(--energy-line); border-radius:12px; background:white; box-shadow:0 10px 25px #30312f15; }
+.applications-options li { padding:10px; border-radius:8px; cursor:pointer; font-size:.85rem; }
+.applications-options li[aria-selected=true],.applications-options li:hover { background:#fff2e6; }
+.applications-employee-picker { display:flex; gap:16px; align-items:end; }
+.applications-employee-picker .applications-picker { flex:1; }
+.applications-registry-heading { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-top:28px; }
+.applications-registry-heading h3 { font-size:1.1rem; font-weight:750; margin:0; }
+.applications-registry-heading button { margin:0; }
+.applications-zone .energo-record { grid-template-columns:minmax(0,1fr) auto; }
+.applications-zone .energo-records { max-height:520px; }
+.applications-form fieldset { display:grid; gap:18px; min-width:0; }
+.applications-form label { display:grid; gap:8px; font-size:.85rem; font-weight:600; }
+.applications-form small { font-size:.75rem; color:#777872; font-weight:400; }
+.applications-form .form-control { border-radius:12px; padding:12px; }
+.applications-form textarea { resize:vertical; }
+.applications-form .energo-state { padding:0; }
+.applications-actions { gap:10px; flex-wrap:wrap; }
+.applications-actions .energo-primary { min-height:40px; padding:8px 14px; }
+.applications-attachment { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:12px 0; padding:12px; background:#f8f8f7; border-radius:12px; font-size:.85rem; }
+.applications-attachment button { margin:0; }
+.applications-text { white-space:pre-wrap; }
+.applications-notification { position:fixed; right:24px; top:20px; max-width:min(460px,calc(100vw - 48px)); padding:16px 22px; background:#e7f2e9; color:#267145; border:1px solid #b8d8c0; border-radius:14px; z-index:20; box-shadow:0 8px 25px #11182718; }
+.applications-notification.is-error { color:#a33232; background:#fae9e7; border-color:#e9baba; }
+.applications-bell { display:grid; place-items:center; width:46px; height:46px; background:#f0f0ed; border-radius:14px; color:#73746f; }
+.energo-page button:disabled { opacity:.5; cursor:default; }
+@media(max-width:720px) { .applications-employee-picker { align-items:stretch; flex-direction:column; } .applications-zone .energo-section-header { flex-wrap:wrap; } .applications-zone .energo-record { grid-template-columns:1fr; } .applications-zone .energo-record-value { text-align:left; } }
+
+.energo-page .applications-success { color:#267145; background:#e7f2e9; padding:12px; border-radius:12px; margin-bottom:16px; }
